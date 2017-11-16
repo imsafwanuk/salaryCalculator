@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="408.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salarycalculator.FXMLDocumentController">
+    <children>
+      <VBox layoutX="14.0" layoutY="22.0">
+         <children>
+            <HBox prefHeight="30.0" prefWidth="69.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="23.0" text="\$">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="hourly_wage_field_A" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="61.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="69.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="23.0" text="\$">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="hourly_wage_field_B" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="61.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="69.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="23.0" text="\$">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="hourly_wage_field_C" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="61.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Group fx:id="days_group" layoutX="23.0" layoutY="95.0">
+         <children>
+            <VBox fx:id="vbox_labels" layoutY="45.0" prefHeight="146.0" prefWidth="90.0">
+               <children>
+                  <Label id="bm" fx:id="bm" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="90.0" text="Start Time">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="90.0" text="End Time">
+                     <VBox.margin>
+                        <Insets top="7.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="90.0" text="Break (min)">
+                     <VBox.margin>
+                        <Insets top="11.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="90.0" text="Earned">
+                     <VBox.margin>
+                        <Insets top="9.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="vbox_mon" layoutX="90.0" layoutY="21.0">
+               <children>
+                  <Label fx:id="mon" alignment="CENTER" prefHeight="20.0" prefWidth="90.0" text="Mon">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="mon_start_hr" prefHeight="25.0" prefWidth="40.0" />
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="mon_start_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="mon_end_hr" prefHeight="25.0" prefWidth="40.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="mon_end_min1" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField fx:id="mon_break" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="mon_earned" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox prefHeight="47.0" prefWidth="37.0">
+                     <children>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_A_mon" mnemonicParsing="false" onAction="#wageSelectorListener" onDragDetected="#wageSelectorListener" onDragDone="#wageSelectorListener" onDragDropped="#wageSelectorListener" onDragEntered="#wageSelectorListener" onDragExited="#wageSelectorListener" onDragOver="#wageSelectorListener" onMouseDragEntered="#wageSelectorListener" onMouseDragExited="#wageSelectorListener" onMouseDragOver="#wageSelectorListener" onMouseDragReleased="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" selected="true">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="wage_selector_mon" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="A " />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="12.0" right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_B_mon" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" toggleGroup="$wage_selector_mon" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="B " />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_C_mon" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="7.0" toggleGroup="$wage_selector_mon" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="C " />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="vbox_tue" layoutX="200.0" layoutY="22.0">
+               <children>
+                  <Label fx:id="tue1" alignment="CENTER" prefHeight="20.0" prefWidth="90.0" text="Tue">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="tue_start_hr" prefHeight="25.0" prefWidth="40.0" />
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tue_start_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="tue_end_hr" prefHeight="25.0" prefWidth="40.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tue_end_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField fx:id="tue_break" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="tue_earned" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox>
+                     <children>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_A_tue" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" selected="true">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="wage_selector_tue" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="A " />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="12.0" right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_B_tue" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" toggleGroup="$wage_selector_tue" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="B " />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_C_tue" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="7.0" toggleGroup="$wage_selector_tue" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="C " />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="vbox_wed" layoutX="301.0" layoutY="23.0">
+               <children>
+                  <Label fx:id="wed" alignment="CENTER" prefHeight="20.0" prefWidth="90.0" text="Wed">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="wed_start_hr" prefHeight="25.0" prefWidth="40.0" />
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="wed_start_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="wed_end_hr" prefHeight="25.0" prefWidth="40.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="wed_end_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField fx:id="wed_break" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="wed_earned" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox prefHeight="47.0" prefWidth="92.0">
+                     <children>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_A_wed" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" selected="true">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="wage_selector_wed" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="A " />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="12.0" right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_B_wed" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" toggleGroup="$wage_selector_wed" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="B " />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_C_wed" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="7.0" toggleGroup="$wage_selector_wed" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="C " />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="vbox_thu" layoutX="411.0" layoutY="23.0">
+               <children>
+                  <Label fx:id="thu" alignment="CENTER" prefHeight="20.0" prefWidth="90.0" text="Thu">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="thu_start_hr" prefHeight="25.0" prefWidth="40.0" />
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="thu_start_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="thu_end_hr" prefHeight="25.0" prefWidth="40.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="thu_end_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField fx:id="thu_break" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="thu_earned" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox>
+                     <children>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_A_thu" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" selected="true">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="wage_selector_thu" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="A " />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="12.0" right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_B_thu" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" toggleGroup="$wage_selector_thu" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="B " />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_C_thu" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="7.0" toggleGroup="$wage_selector_thu" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="C " />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="vbox_fri" layoutX="521.0" layoutY="23.0">
+               <children>
+                  <Label fx:id="fri" alignment="CENTER" prefHeight="17.0" prefWidth="90.0" text="Fri">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="fri_start_hr" prefHeight="25.0" prefWidth="40.0" />
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="fri_start_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="fri_end_hr" prefHeight="25.0" prefWidth="40.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="fri_end_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField fx:id="fri_break" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="fri_earned" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox>
+                     <children>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_A_fri" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" selected="true">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="wage_selector_fri" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="A " />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="12.0" right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_B_fri" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" toggleGroup="$wage_selector_fri" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="B " />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_C_fri" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="7.0" toggleGroup="$wage_selector_fri" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="C " />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="vbox_sat" layoutX="631.0" layoutY="23.0">
+               <children>
+                  <Label fx:id="sat" alignment="CENTER" prefHeight="17.0" prefWidth="90.0" text="Sat" textFill="RED">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="sat_start_hr" prefHeight="25.0" prefWidth="40.0" />
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="sat_start_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="sat_end_hr" prefHeight="25.0" prefWidth="40.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="sat_end_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField fx:id="sat_break" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="sat_earned" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox>
+                     <children>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_A_sat" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" selected="true">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="wage_selector_sat" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="A " />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="12.0" right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_B_sat" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" toggleGroup="$wage_selector_sat" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="B " />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_C_sat" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="7.0" toggleGroup="$wage_selector_sat" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="C " />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="vbox_sun" layoutX="741.0" layoutY="23.0">
+               <children>
+                  <Label fx:id="sun" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="90.0" text="Sun" textFill="RED">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="sun_start_hr" prefHeight="25.0" prefWidth="40.0" />
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="sun_start_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <TextField fx:id="sun_end_hr" prefHeight="25.0" prefWidth="40.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="17.0" prefWidth="10.0" text=":" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="sun_end_min" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField fx:id="sun_break" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="sun_earned" prefHeight="0.0" prefWidth="90.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox>
+                     <children>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_A_sun" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" selected="true">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="wage_selector_sun" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="A " />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="12.0" right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_B_sun" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" toggleGroup="$wage_selector_sun" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="B " />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <RadioButton fx:id="wage_selector_C_sun" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="7.0" toggleGroup="$wage_selector_sun" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="C " />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </Group>
+      <Button id="cal" fx:id="calculate_btn" layoutX="361.0" layoutY="365.0" mnemonicParsing="false" onAction="#operateCalculateBtn" text="Calculate" />
+      <HBox layoutX="57.0" layoutY="371.0" prefHeight="17.0" prefWidth="110.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="70.0" text="Total Hours:" />
+            <Label fx:id="total_hour" prefHeight="17.0" prefWidth="40.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="177.0" layoutY="371.0" prefHeight="17.0" prefWidth="153.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="92.0" text="Total Earned:  $" />
+            <Label fx:id="total_earned" prefHeight="17.0" prefWidth="63.0" />
+         </children>
+      </HBox>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="80.0" layoutY="22.0" prefHeight="30.0" prefWidth="100.0" text="A : Hourly Wage" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="83.0" layoutY="52.0" prefHeight="30.0" prefWidth="123.0" text="B : Weekend(Sat) Rate" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="85.0" layoutY="77.0" prefHeight="30.0" prefWidth="123.0" text="C : Weekend(Sun) Rate" />
+      <Button fx:id="clearAllDayBtn" layoutX="449.0" layoutY="365.0" mnemonicParsing="false" text="Clear all day" />
+    </children>
+   <padding>
+      <Insets left="20.0" right="20.0" />
+   </padding>
+</AnchorPane>
