@@ -678,7 +678,7 @@
             </VBox>
          </children>
       </Group>
-      <Button id="cal" fx:id="calculate_btn" layoutX="361.0" layoutY="365.0" mnemonicParsing="false" onAction="#operateCalculateBtn" text="Calculate" />
+      <Button id="cal" fx:id="calculate_btn" layoutX="361.0" layoutY="365.0" mnemonicParsing="false" onAction="#calculateBtnListener" text="Calculate" />
       <HBox layoutX="57.0" layoutY="371.0" prefHeight="17.0" prefWidth="110.0">
          <children>
             <Label prefHeight="17.0" prefWidth="70.0" text="Total Hours:" />
