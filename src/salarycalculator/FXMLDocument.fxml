@@ -104,7 +104,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="mon_end_min1" prefHeight="25.0" prefWidth="40.0" />
+                        <TextField fx:id="mon_end_min" prefHeight="25.0" prefWidth="40.0" />
                      </children>
                      <VBox.margin>
                         <Insets top="15.0" />
@@ -695,6 +695,8 @@
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="83.0" layoutY="52.0" prefHeight="30.0" prefWidth="123.0" text="B : Weekend(Sat) Rate" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="85.0" layoutY="77.0" prefHeight="30.0" prefWidth="123.0" text="C : Weekend(Sun) Rate" />
       <Button fx:id="clearAllDayBtn" layoutX="449.0" layoutY="365.0" mnemonicParsing="false" text="Clear all day" />
+      <Button fx:id="save_btn" layoutX="556.0" layoutY="364.0" mnemonicParsing="false" onAction="#saveBtnListener" text="Save" />
+      <Button fx:id="load_btn" layoutX="620.0" layoutY="365.0" mnemonicParsing="false" onAction="#loadBtnListener" text="Load" />
     </children>
    <padding>
       <Insets left="20.0" right="20.0" />
