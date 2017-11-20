@@ -5,46 +5,27 @@
  */
 package salarycalculator;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.text.DecimalFormat;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Observable;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import org.controlsfx.control.CheckComboBox;
 
@@ -63,7 +44,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     TextField hourly_wage_field_A, hourly_wage_field_B, hourly_wage_field_C;
-    ArrayList<TextField> hourlyWageList = new ArrayList<TextField>();
+    ArrayList<TextField> hourlyWageList = new ArrayList<>();
     //monday text fields declarations
     @FXML
     TextField mon_start_hr, mon_start_min, mon_end_hr, mon_end_min, mon_break, mon_earned;
@@ -235,11 +216,108 @@ public class FXMLDocumentController implements Initializable {
             if(loader.getCompatibility()) {
                 loader.loadUserProperties();
                 loader.closeFile();
+                this.reloadGUI();
             }
         }else{
             System.out.println("Invalid file");
         }
     }
+    
+    
+/**
+ * Function: Reloads all the user inputable objects in the GUI to whats in the model currently.
+ * Stimuli: Can be called when user loads a userInfo.properties files
+ */
+    public void reloadGUI() {
+        // reload wages
+        this.reloadWages();
+        
+        // reload days
+        this.reloadDays();
+    }
+    
+/**
+   * Function: Reloads all wages textfield
+   * Stimuli: Called by reloadGUI()
+   */
+    private void reloadWages() {
+        if(Wage.getHourlyWageA() > 0)
+            hourlyWageList.get(0).setText(Double.toString(Wage.getHourlyWageA()));
+        
+        if(Wage.getHourlyWageB() > 0)
+            hourlyWageList.get(1).setText(Double.toString(Wage.getHourlyWageB()));
+        
+        if(Wage.getHourlyWageC() > 0)
+            hourlyWageList.get(2).setText(Double.toString(Wage.getHourlyWageC()));
+    }
+    
+    
+/**
+ * Function: Reloads days, start, end, break and (radio) wage selection buttons
+ * Stimuli: Called by reloadGUI()
+ */
+    private void reloadDays() {
+        // contains start and end hours/mins for all days
+        List<TextField> theList = this.getAllDaysTextFieldOf("work times");
+        // contains break time for all days
+        List<TextField> breakList = this.getAllDaysTextFieldOf("break times");
+        //3x radio btns for all 7 days
+        List<RadioButton> radioBtnList = this.getAllDayRadioButtons();
+            
+            for(int i = 0; i < theModel.daylist.length; i++) {
+                Day day = theModel.daylist[i];
+                
+                for(int j = i*4 ; j < ((i*4) + 4); j+=4) {
+                    //for seg fault
+                    if(j+1 >= theList.size())
+                        break;
+                
+                   
+                    // start time 
+                    if(day.startTime.getHr() > 0) {
+                        theList.get(j).setText(Integer.toString(day.startTime.getHr()));
+                        System.out.println("!!!!!!"+day.startTime.getHr());
+                    }
+                    if(day.startTime.getMin() > 0) {
+                        theList.get(j+1).setText(Integer.toString(day.startTime.getMin()));
+                        System.out.println("!!!!!!"+day.startTime.getMin());
+                    }
+
+                    
+                    // end time
+                    if(day.endTime.getHr() > 0) {
+                        theList.get(j+2).setText(Integer.toString(day.endTime.getHr()));
+                        System.out.println("!!!!!!"+day.endTime.getHr());
+                    }
+
+                    if(day.endTime.getMin() > 0) {
+                        theList.get(j+3).setText(Integer.toString(day.endTime.getMin()));
+                    }
+            }
+
+            // break time
+            if(day.getBreakTime()> 0) {
+                breakList.get(i).setText(Integer.toString(day.getBreakTime()));
+            }
+            
+            // wage selection
+            for(int j = i*3; j < ((i*3) + 3); j+=3) {
+                String str = day.getWageSelection();
+                switch(str) {
+                    case "A":
+                        radioBtnList.get(j).setSelected(true);
+                        break;
+                    case "B":
+                        radioBtnList.get(j+1).setSelected(true);
+                        break;
+                    case "C":
+                        radioBtnList.get(j+2).setSelected(true);
+                        break;
+                }        
+            }
+        }
+    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -289,10 +367,10 @@ public class FXMLDocumentController implements Initializable {
 //              If start and end time is wanted, it will provide an array of start and end time for all days.
 //              If break time is wanted, it will provide break time for all days.
 //              If earned is wanted, it will provide earned textfield for all days.
-//    Input: "work time", "break time" or "earned"
+//    Input: "work times", "break times" or "earned"
 
     public List<TextField> getAllDaysTextFieldOf(String fieldOf) {
-        List<TextField> retList = new ArrayList<TextField>();
+        List<TextField> retList = new ArrayList<>();
         if(!fieldOf.equals("work times") && !fieldOf.equals("break times") && !fieldOf.equals("earned")) {
             System.out.println("Bad input request. Use either work times to get start and end times, \n or break times or earned");
             return null;
@@ -327,6 +405,41 @@ public class FXMLDocumentController implements Initializable {
         }
         return retList;
      }
+    
+    
+    
+/**
+ * Function: Creates a list of radio buttons, 3 btns for all 7 days and puts them in a List
+ * Stimuli: Can be called whenever radio buttons are needed.
+ * Return: List<RadioButton>
+ */
+    public List<RadioButton> getAllDayRadioButtons() {
+        Day day;
+        List<RadioButton> radioBtnList = new ArrayList<RadioButton>();
+         
+        for(Node day_col: days_group.getChildren()) {
+             day = theModel.getDayObject(((VBox)day_col).getId().substring(5));
+            //get all children nodes for each day. aka get vertical column of each day
+            //From: VBox, Get: all HBox and textfield for each day
+            for(Node n : ((VBox)day_col).getChildren()) {
+                //for start and end time only
+                if( n instanceof HBox) {
+                    for(Node ni: ((HBox)n).getChildren()) {
+                        if(ni instanceof VBox) {    //for a day, when we find Vbox of radio buttons
+                            for(Node nii : ((VBox)ni).getChildren()) {
+                                if(nii instanceof RadioButton) {    //for a day, when we find radio button
+                                    RadioButton rb = (RadioButton)nii;
+                                    radioBtnList.add(rb);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        return radioBtnList;
+    }
     
 //    does what it says
     public void addListenersToDays() {

@@ -9,7 +9,7 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="lib\controlsfx-8.40.13.jar" size="1213306" download="eager" />
-    <jar href="salaryCalculator.jar" size="21666" download="eager" />
+    <jar href="salaryCalculator.jar" size="22888" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="salaryCalculator" >
     <param name="requiredFXVersion" value="8.0+"/>
