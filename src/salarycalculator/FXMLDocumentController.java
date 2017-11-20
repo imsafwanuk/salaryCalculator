@@ -126,7 +126,7 @@ public class FXMLDocumentController implements Initializable {
     public void hourlyWageChangeListener(String id, String val) {
         try
         {
-            Double dval = Double.parseDouble(val);
+            double dval = Double.parseDouble(val);
             switch(id) {
               case "A":
                   Wage.setHourlyWageA(dval);
@@ -191,9 +191,8 @@ public class FXMLDocumentController implements Initializable {
       
 
 /**
- * 
- * @param url
- * @param rb 
+ * Function: Causes the Model to save user info in a .txt or .properties file in users desired location.
+ * Stimuli: When Save btn is clicked
  */
     public void saveBtnListener() throws IOException{
         FileChooser fileChooser = new FileChooser();
@@ -210,6 +209,33 @@ public class FXMLDocumentController implements Initializable {
         if(saveFile != null) {
             Model.SaveProperties saver = theModel.new SaveProperties(saveFile);
             saver.saveUserProperties();
+            saver.closeFile();
+        }else{
+            System.out.println("Invalid file");
+        }
+    }
+    
+/**
+ * Function: Causes the Model to load user info from a .txt or .properties file in users desired location.
+ * Stimuli: When load btn is clicked
+ */
+    public void loadBtnListener() throws IOException{
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterProperties = new FileChooser.ExtensionFilter("Properties, TXT files (*.properties)", "*.properties", "*.txt");
+        FileChooser.ExtensionFilter extFilterTxt = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilterProperties);
+        fileChooser.getExtensionFilters().add(extFilterTxt);
+
+        //Show save file dialog
+        File loadFile = fileChooser.showOpenDialog(null);
+        if(loadFile != null) {
+            Model.LoadProperties loader = theModel.new LoadProperties(loadFile);
+            if(loader.getCompatibility()) {
+                loader.loadUserProperties();
+                loader.closeFile();
+            }
         }else{
             System.out.println("Invalid file");
         }
