@@ -26,7 +26,6 @@ public final class Wage {
 
 //setters
     public static void setHourlyWageA(double hourlyWageA) {
-        System.out.println(hourlyWageA);
         if(hourlyWageA>=0.0)
             Wage.hourlyWageA = hourlyWageA;
         else
@@ -34,7 +33,6 @@ public final class Wage {
     }
 
     public static void setHourlyWageB(double hourlyWageB) {
-        System.out.println(hourlyWageB);
         if(hourlyWageB>=0.0)
             Wage.hourlyWageB = hourlyWageB;
         else
@@ -42,7 +40,6 @@ public final class Wage {
     }
 
     public static void setHourlyWageC(double hourlyWageC) {
-        System.out.println(hourlyWageC);
         if(hourlyWageC>=0.0)
             Wage.hourlyWageC = hourlyWageC;
         else
