@@ -5,7 +5,13 @@
  */
 package salarycalculator;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Properties;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
@@ -24,6 +30,7 @@ public class Model {
     Day saturday = new Day("saturday");
     Day sunday = new Day("sunday");
     Day[] daylist = {monday, tuesday, wednesday, thursday, friday, saturday, sunday};
+    Wage wage = new Wage();
     
     Model() {
         
@@ -170,5 +177,101 @@ public class Model {
                return null;
        }
    }
-    
+ 
+    /**
+      * Function: Is used to save used info. Should only be created if a model class exists.
+      */
+    public class SaveProperties {
+
+        private BufferedWriter out;
+
+        /**
+         * 
+         * Function: Creates a file where user info will be saved. 
+         *           If file exist then it will overwrite it.
+         * Stimuli: When save btn is clicked and a valid input FILE object is passed on.
+         */
+        SaveProperties(File saveFile) throws FileNotFoundException{
+
+            System.out.println("File to be saved: "+saveFile);
+            String savePath = saveFile.toString();
+            File newFile = new File(savePath);
+
+            // delete if exist and create new one
+            if(saveFile.exists()){
+                saveFile.delete();
+            }
+
+            // create new file and properties obj
+            try {
+                out = new BufferedWriter(new FileWriter(newFile));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+        /**
+         * Function: Closes file explicitly
+         */
+        public void closeFile() throws IOException{
+           out.close();
+        }
+
+        /**
+         * Function: Writes the final modified fields to the out file
+         * Stimuli: Called after a valid SaveProperties obj is created
+         */
+        public void saveUserProperties() throws IOException{
+            //save wages
+            this.saveWages();
+            //save days
+            this.saveDays();
+        }
+
+        
+        /**
+         * Function: Saves each wage textfield seen on the GUI. 
+         *           Key: wageA/B/C
+         */
+        private void saveWages() throws IOException {
+            Properties wagePty = new Properties();
+            //create 
+            wagePty.setProperty("wageA",Double.toString(wage.getHourlyWageA()));
+            wagePty.setProperty("wageB",Double.toString(wage.getHourlyWageB()));
+            wagePty.setProperty("wageC",Double.toString(wage.getHourlyWageC()));
+            
+            //save
+            wagePty.store(out,"wages");
+        }
+        
+        /**
+         * Function: Saves each day's each textfield seen on the GUI. 
+         *           Key: Day$FieldName
+         */
+        private void saveDays() throws IOException {
+            for(Day day : daylist) {
+                Properties dayPty = new Properties();
+                //start time hr
+                dayPty.setProperty(day.getDayName()+"$startHr", Double.toString(day.startTime.getHr()));
+                //start time min
+                dayPty.setProperty(day.getDayName()+"$startMin", Double.toString(day.startTime.getMin()));
+                //end time hr
+                dayPty.setProperty(day.getDayName()+"$endHr", Double.toString(day.endTime.getHr()));
+                //end time min
+                dayPty.setProperty(day.getDayName()+"$endMin", Double.toString(day.endTime.getMin()));
+                //break time
+                dayPty.setProperty(day.getDayName()+"$breakTime", Double.toString(day.getBreakTime()));
+                //total earned
+                dayPty.setProperty(day.getDayName()+"$amountEarned", Double.toString(day.getAmountEarned()));
+                //wage choice
+                dayPty.setProperty(day.getDayName()+"$wageSelection", day.getWageSelection());
+                
+                //save
+                dayPty.store(out,"Day information: "+day.getDayName());
+            }
+        }
+    }
+
 }

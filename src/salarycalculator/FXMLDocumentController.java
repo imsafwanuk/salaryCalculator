@@ -5,6 +5,10 @@
  */
 package salarycalculator;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -41,6 +45,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import org.controlsfx.control.CheckComboBox;
 
 /**
@@ -185,6 +190,31 @@ public class FXMLDocumentController implements Initializable {
     }
       
 
+/**
+ * 
+ * @param url
+ * @param rb 
+ */
+    public void saveBtnListener() throws IOException{
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterProperties = new FileChooser.ExtensionFilter("Properties, TXT files (*.properties)", "*.properties", "*.txt");
+        FileChooser.ExtensionFilter extFilterTxt = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilterProperties);
+        fileChooser.getExtensionFilters().add(extFilterTxt);
+
+        //Show save file dialog
+        File saveFile = fileChooser.showSaveDialog(null);
+            
+        if(saveFile != null) {
+            Model.SaveProperties saver = theModel.new SaveProperties(saveFile);
+            saver.saveUserProperties();
+        }else{
+            System.out.println("Invalid file");
+        }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //inserting 3 diff wage textfield in 1 arraylist for easy access

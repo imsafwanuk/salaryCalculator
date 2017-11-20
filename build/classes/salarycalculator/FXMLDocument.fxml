@@ -695,6 +695,7 @@
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="83.0" layoutY="52.0" prefHeight="30.0" prefWidth="123.0" text="B : Weekend(Sat) Rate" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="85.0" layoutY="77.0" prefHeight="30.0" prefWidth="123.0" text="C : Weekend(Sun) Rate" />
       <Button fx:id="clearAllDayBtn" layoutX="449.0" layoutY="365.0" mnemonicParsing="false" text="Clear all day" />
+      <Button fx:id="save_btn" layoutX="556.0" layoutY="364.0" mnemonicParsing="false" onAction="#saveBtnListener" text="Save" />
     </children>
    <padding>
       <Insets left="20.0" right="20.0" />
