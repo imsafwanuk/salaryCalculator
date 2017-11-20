@@ -17,10 +17,6 @@ public class Time {
     private IntegerProperty min = new SimpleIntegerProperty(0);
     
     // hr
-    public IntegerProperty hrProperty() {
-        return hr;
-    }
-    
     public void setHr(Integer s) {
         if(s<0 || s>23)
             s = 0;
@@ -31,11 +27,7 @@ public class Time {
         return this.hr.get();
     }
     
-// min
-    public IntegerProperty minProperty() {
-        return hr;
-    }
-    
+// min    
     public void setMin(Integer s) {
         if(s<0 || s>59)
             s = 0;
@@ -51,12 +43,9 @@ public class Time {
         double a = this.getHr()+this.getMin()/60.0;
         double b = t.getHr()+t.getMin()/60.0;
         
-        //just for safety, ensuring that bigger hour - smaller hour happens
-       // if(this.getHr() >= t.getHr()) {
+        if((a-b) < 0) 
+            return 0;
+        else
             return a-b;
-        //}else{
-//            return b-a;
-//        }
-        
     }
 }
