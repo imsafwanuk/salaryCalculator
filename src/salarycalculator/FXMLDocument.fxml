@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="408.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salarycalculator.FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="408.0" prefWidth="916.0" stylesheets="@stylesheets/darktheme.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salarycalculator.FXMLDocumentController">
     <children>
       <VBox layoutX="14.0" layoutY="22.0">
          <children>
@@ -395,7 +395,7 @@
                         </VBox>
                         <VBox>
                            <children>
-                              <RadioButton fx:id="wage_selector_B_thu" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" toggleGroup="$wage_selector_thu" />
+                              <RadioButton fx:id="wage_selector_B_thu" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" style="-fx-text-fill: #B2DFDB;" toggleGroup="$wage_selector_thu" />
                               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="B " />
                            </children>
                            <HBox.margin>
@@ -694,9 +694,9 @@
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="80.0" layoutY="22.0" prefHeight="30.0" prefWidth="100.0" text="A : Hourly Wage" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="83.0" layoutY="52.0" prefHeight="30.0" prefWidth="123.0" text="B : Weekend(Sat) Rate" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="85.0" layoutY="77.0" prefHeight="30.0" prefWidth="123.0" text="C : Weekend(Sun) Rate" />
-      <Button fx:id="clearAllDayBtn" layoutX="449.0" layoutY="365.0" mnemonicParsing="false" text="Clear all day" />
-      <Button fx:id="save_btn" layoutX="556.0" layoutY="364.0" mnemonicParsing="false" onAction="#saveBtnListener" text="Save" />
-      <Button fx:id="load_btn" layoutX="620.0" layoutY="365.0" mnemonicParsing="false" onAction="#loadBtnListener" text="Load" />
+      <Button fx:id="clearAllDayBtn" layoutX="585.0" layoutY="365.0" mnemonicParsing="false" text="Clear all day" />
+      <Button fx:id="save_btn" layoutX="458.0" layoutY="365.0" mnemonicParsing="false" onAction="#saveBtnListener" text="Save" />
+      <Button fx:id="load_btn" layoutX="516.0" layoutY="365.0" mnemonicParsing="false" onAction="#loadBtnListener" text="Load" />
     </children>
    <padding>
       <Insets left="20.0" right="20.0" />
