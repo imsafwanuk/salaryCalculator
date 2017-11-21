@@ -25,28 +25,34 @@ public final class Wage {
     }
 
 //setters
-    public static void setHourlyWageA(double hourlyWageA) {
-        System.out.println(hourlyWageA);
-        if(hourlyWageA>=0.0)
+    public static boolean setHourlyWageA(double hourlyWageA) {
+        if(hourlyWageA>=0.0) {
             Wage.hourlyWageA = hourlyWageA;
-        else
+            return true;
+        }else {
             Wage.hourlyWageA = 0.0;
+            return false;   
+        }
     }
 
-    public static void setHourlyWageB(double hourlyWageB) {
-        System.out.println(hourlyWageB);
-        if(hourlyWageB>=0.0)
+    public static boolean setHourlyWageB(double hourlyWageB) {
+        if(hourlyWageB>=0.0) {
             Wage.hourlyWageB = hourlyWageB;
-        else
+            return true;
+        }else {
             Wage.hourlyWageB = 0.0;
+            return false;   
+        }
     }
 
-    public static void setHourlyWageC(double hourlyWageC) {
-        System.out.println(hourlyWageC);
-        if(hourlyWageC>=0.0)
+    public static boolean setHourlyWageC(double hourlyWageC) {
+        if(hourlyWageC >= 0.0){
             Wage.hourlyWageC = hourlyWageC;
-        else
+            return true;
+        }else {
             Wage.hourlyWageC = 0.0;
+            return false;   
+        }
     }
 
     public void setWage(String mainWage) {
