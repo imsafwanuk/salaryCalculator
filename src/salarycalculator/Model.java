@@ -17,6 +17,7 @@ import java.util.Properties;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
+import salarycalculator.FXMLDocumentController.faultType;
 
 /**
  *
@@ -60,20 +61,25 @@ public class Model {
         if(substr.contains("_start")) {
             
             if(substr.contains("_hr")) {
-                day.startTime.setHr(val);
+                if(!day.startTime.setHr(val))
+                        FXMLDocumentController.showWarningOrError(faultType.WARNING, "Hour must be between 0 - 23");
             }else{
-                day.startTime.setMin(val);
+                if(!day.startTime.setMin(val))
+                        FXMLDocumentController.showWarningOrError(faultType.WARNING, "Minutes must be between 0 - 59");
             }
         }
         else if(substr.contains("_end"))
         {
             if(substr.contains("_hr")) {
-                day.endTime.setHr(val);
+                if(!day.endTime.setHr(val))
+                        FXMLDocumentController.showWarningOrError(faultType.WARNING, "Hour must be between 0 - 23");
             }else{
-                day.endTime.setMin(val);
+                if(!day.endTime.setMin(val))
+                        FXMLDocumentController.showWarningOrError(faultType.WARNING, "Minutes must be between 0 - 59");
             }
         }else if(substr.contains("_break")) {
-            day.setBreakTime(val);
+            if(!day.setBreakTime(val))
+                FXMLDocumentController.showWarningOrError(faultType.WARNING, "Minutes must be between 0 - total hours worked");
         }
         calculateAmountEarned(day);    
     }

@@ -20,10 +20,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -110,30 +113,35 @@ public class FXMLDocumentController implements Initializable {
             double dval = Double.parseDouble(val);
             switch(id) {
               case "A":
-                  Wage.setHourlyWageA(dval);
+                  if(!Wage.setHourlyWageA(dval))
+                      this.showWarningOrError(faultType.WARNING, "Wage must be greater than 0 ");
                   break;
               case "B":
-                  Wage.setHourlyWageB(dval);
+                  if(!Wage.setHourlyWageB(dval))
+                      this.showWarningOrError(faultType.WARNING, "Wage must be greater than 0 ");
                   break;
               case "C":
-                  Wage.setHourlyWageC(dval);
+                  if(!Wage.setHourlyWageC(dval))
+                      this.showWarningOrError(faultType.WARNING, "Wage must be greater than 0 ");
                   break;
             }
         }
         catch (NumberFormatException nfe)
         {
-              switch(id) {
-              case "A":
-                  Wage.setHourlyWageA(0);
-                  break;
-              case "B":
-                  Wage.setHourlyWageB(0);
-                  break;
-              case "C":
-                  Wage.setHourlyWageC(0);
-                  break;
+            if(!val.equals(""))
+                this.showWarningOrError(faultType.ERROR, "Wage must be a number greater than 0");
+            switch(id) {
+                case "A":
+                    Wage.setHourlyWageA(0);
+                    break;
+                case "B":
+                    Wage.setHourlyWageB(0);
+                    break;
+                case "C":
+                    Wage.setHourlyWageC(0);
+                    break;
             }
-              throw new NumberFormatException("The month entered, " + nfe+ " is invalid.");
+            throw new NumberFormatException("The month entered, " + nfe+ " is invalid.");
         }
         
         theModel.calculateAmountEarned("all");
@@ -318,6 +326,27 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+    
+/**
+ * Function: Allows dev to show warnings and errors
+ * 
+ */
+    public static enum faultType {WARNING,ERROR};
+    
+    
+    public static void showWarningOrError(faultType code, String msg) {
+        if(code == faultType.WARNING) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText(msg);
+            alert.showAndWait();
+        }else {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText(msg);
+            alert.showAndWait();
+        }
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

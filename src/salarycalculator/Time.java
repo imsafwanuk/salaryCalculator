@@ -21,10 +21,14 @@ public class Time {
         return hr;
     }
     
-    public void setHr(Integer s) {
-        if(s<0 || s>23)
+    public boolean setHr(Integer s) {
+        if(s >= 0 && s < 23) {
+            this.hr.set(s);
+            return true;
+        }else {
             s = 0;
-        this.hr.set(s);
+            return false;
+        }
     }
     
     public Integer getHr() {
@@ -36,10 +40,14 @@ public class Time {
         return hr;
     }
     
-    public void setMin(Integer s) {
-        if(s<0 || s>59)
+    public boolean setMin(Integer s) {
+        if(s >= 0 && s < 59) {
+            this.min.set(s);
+            return true;
+        }else {
             s = 0;
-        this.min.set(s);
+            return false;
+        }
     }
     
     public Integer getMin() {
