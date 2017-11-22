@@ -400,4 +400,62 @@ public class Model {
         }
     }
     
+    /**
+     * Function: This class is responsible for providing the methods that would clear GUI objects
+     *           like textfields,preferences etc.
+     */
+    public class Clear{
+        
+        Clear(String str) {
+            if(str.equals("wages")) {
+                this.clearWages();
+            }else if(str.equals("everything")) {
+                this.clearWages();
+                this.clearDays("all days");
+            }else {
+                this.clearDays(str);
+            }
+        };
+        
+        
+        /**
+         * Function: Clears all the 3 wages.
+         */
+        private void clearWages(){
+            
+            Wage.setHourlyWageA(0);
+            Wage.setHourlyWageB(0);
+            Wage.setHourlyWageC(0);
+        }
+        
+        
+        /**
+         * Function: Clears hours of the day or clears all hours of all days, depending on input.
+         * Parameters: String day; if day == "all", clear all days. Or clear specific day.
+         */
+        private void clearDays(String dayStr){
+            if(dayStr.equals("all days")) {
+                for(Day day : Model.this.daylist) {
+                    this.clearOneDay(day);
+                }
+            }else {
+                Day day = Model.this.getDayObject(dayStr);
+                this.clearOneDay(day);
+            }
+        }
+        
+        private void clearOneDay(Day day){
+            
+            int i = 0; double j = 0;
+            day.startTime.setHr(i);
+            day.startTime.setMin(i);
+            day.endTime.setHr(i);
+            day.endTime.setMin(i);
+            day.setBreakTime(i);
+            System.out.println("Clearing: " + day.getDayName()+":"+day.startTime.getHr()+":"+day.endTime.getHr());
+        }
+        
+        
+    }
+    
 }
