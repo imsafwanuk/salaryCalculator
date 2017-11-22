@@ -22,7 +22,7 @@ public class Time {
     }
     
     public boolean setHr(Integer s) {
-        if(s >= 0 && s < 23) {
+        if(s >= 0 && s <= 23) {
             this.hr.set(s);
             return true;
         }else {
@@ -41,7 +41,7 @@ public class Time {
     }
     
     public boolean setMin(Integer s) {
-        if(s >= 0 && s < 59) {
+        if(s >= 0 && s <= 59) {
             this.min.set(s);
             return true;
         }else {
