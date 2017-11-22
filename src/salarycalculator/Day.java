@@ -126,8 +126,8 @@ public class Day {
     
     public boolean setBreakTime(Integer s) {
         System.out.println(s+":"+this.endTime.getTimeDiff(this.startTime));
-        if((double)(s/60.0)>= this.endTime.getTimeDiff(this.startTime)) {
-            System.out.println("Break time can't be more than the total hours worked.");
+        if((double)(s/60.0)> this.endTime.getTimeDiff(this.startTime)) {
+            System.out.println("Break time can't be more than the total hours worked-> "+ this.endTime.getTimeDiff(this.startTime)+":"+(double)(s/60.0));
             this.breakTime.set((int) this.endTime.getTimeDiff(this.startTime)*60);
             return false;
         }else {

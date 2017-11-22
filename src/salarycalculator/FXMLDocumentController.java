@@ -22,11 +22,11 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -90,17 +90,10 @@ public class FXMLDocumentController implements Initializable {
     RadioButton wage_selector_A, wage_selector_B, wage_selector_C;
     
     @FXML
-    Button clearAllDayBtn;
+    MenuButton clear_menu_btn;
+    @FXML
+    MenuItem menu_item_all_day, menu_item_wages, menu_item_mon, menu_item_tue, menu_item_wed, menu_item_thu, menu_item_fri, menu_item_sat, menu_item_sun, menu_item_everything;
     
-/*
-  Clear class stuff starts
-*/
-//    ClearClass clearObj = new ClearClass();
-    
-/*
-  Clear class stuff ends
-*/
-
 /*
  Fucntion: Whenever the any wage textfield is changed, it all call this function.
            All the respective static wage field will be updated and earned amount for days, 
@@ -141,7 +134,6 @@ public class FXMLDocumentController implements Initializable {
                     Wage.setHourlyWageC(0);
                     break;
             }
-            throw new NumberFormatException("The month entered, " + nfe+ " is invalid.");
         }
         
         theModel.calculateAmountEarned("all");
@@ -251,12 +243,19 @@ public class FXMLDocumentController implements Initializable {
     private void reloadWages() {
         if(Wage.getHourlyWageA() > 0)
             hourlyWageList.get(0).setText(Double.toString(Wage.getHourlyWageA()));
+        else
+            hourlyWageList.get(0).setText("");
+                    
         
         if(Wage.getHourlyWageB() > 0)
             hourlyWageList.get(1).setText(Double.toString(Wage.getHourlyWageB()));
+        else
+            hourlyWageList.get(1).setText("");
         
         if(Wage.getHourlyWageC() > 0)
             hourlyWageList.get(2).setText(Double.toString(Wage.getHourlyWageC()));
+        else
+            hourlyWageList.get(2).setText("");
     }
     
     
@@ -285,10 +284,15 @@ public class FXMLDocumentController implements Initializable {
                     if(day.startTime.getHr() > 0) {
                         theList.get(j).setText(Integer.toString(day.startTime.getHr()));
                         System.out.println("!!!!!!"+day.startTime.getHr());
+                    }else {
+                        theList.get(j).setText("");
                     }
+                    
                     if(day.startTime.getMin() > 0) {
                         theList.get(j+1).setText(Integer.toString(day.startTime.getMin()));
                         System.out.println("!!!!!!"+day.startTime.getMin());
+                    }else {
+                        theList.get(j+1).setText("");
                     }
 
                     
@@ -296,16 +300,22 @@ public class FXMLDocumentController implements Initializable {
                     if(day.endTime.getHr() > 0) {
                         theList.get(j+2).setText(Integer.toString(day.endTime.getHr()));
                         System.out.println("!!!!!!"+day.endTime.getHr());
+                    }else {
+                        theList.get(j+2).setText("");
                     }
 
                     if(day.endTime.getMin() > 0) {
                         theList.get(j+3).setText(Integer.toString(day.endTime.getMin()));
+                    }else {
+                        theList.get(j+3).setText("");
                     }
             }
 
             // break time
             if(day.getBreakTime()> 0) {
                 breakList.get(i).setText(Integer.toString(day.getBreakTime()));
+            }else {
+                breakList.get(i).setText("");
             }
             
             // wage selection
@@ -348,6 +358,18 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+/**
+ * Function: Calls the inner clear class from model to clear selected fields.
+ */    
+    public void clearActionListener(ActionEvent evt) {
+        MenuItem source = (MenuItem) evt.getSource();
+        String str = source.getText();
+        System.out.println(str);
+        Model.Clear theClearer = theModel.new Clear(str);
+        this.reloadGUI();
+    }
+    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //inserting 3 diff wage textfield in 1 arraylist for easy access
