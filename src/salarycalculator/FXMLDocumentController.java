@@ -22,11 +22,13 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -94,6 +96,16 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     MenuItem menu_item_all_day, menu_item_wages, menu_item_mon, menu_item_tue, menu_item_wed, menu_item_thu, menu_item_fri, menu_item_sat, menu_item_sun, menu_item_everything;
     
+    @FXML
+    Button theme_btn;
+    // set path for themes
+    private final String darkTheme = "darktheme.css";
+    private final String pearlTheme = "pearltheme.css";
+    private final String darkTheme2 = "darktheme2.css";
+    
+    
+    @FXML
+    AnchorPane anchor;
 /*
  Fucntion: Whenever the any wage textfield is changed, it all call this function.
            All the respective static wage field will be updated and earned amount for days, 
@@ -369,6 +381,40 @@ public class FXMLDocumentController implements Initializable {
         this.reloadGUI();
     }
     
+    
+/**
+ * Function: Changes theme
+ * Stimuli: Called when theme_btn is pressed
+ */
+    public void themeChangeListener(ActionEvent evt) {
+        String btnText = theme_btn.getText();
+        System.out.println(btnText);
+        switch(btnText) {
+            case "Dark Theme":
+                theme_btn.setText("Pearl Theme");
+                anchor.getStylesheets().clear();
+                anchor.getStylesheets().add(getClass().getResource(pearlTheme).toExternalForm());
+                break;
+            case "Pearl Theme":
+                theme_btn.setText("Dark Theme 2");
+                anchor.getStylesheets().clear();
+                anchor.getStylesheets().add(getClass().getResource(darkTheme2).toExternalForm());
+                break;
+            case "Dark Theme 2":
+                theme_btn.setText("Dark Theme");
+                anchor.getStylesheets().clear();
+                anchor.getStylesheets().add(getClass().getResource(darkTheme).toExternalForm());
+                break;
+        }
+    }
+    
+//    @FXML
+//    Label sat,sun;
+    public void cssInit() {
+                theme_btn.setText("Dark Theme");
+                anchor.getStylesheets().clear();
+                anchor.getStylesheets().add(getClass().getResource(darkTheme).toExternalForm());
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -384,41 +430,11 @@ public class FXMLDocumentController implements Initializable {
         
 
         addListenersToDays();
-        
+        this.cssInit();
         System.out.println("Hey guys");
     }
     
-//  Function: This function gets called when the clear all day button is clicked.
-//            It is responsible for clearing all data stored in the textfields of all days.
-//    public void clearAllDaysInfo() {
-//        //go through all days, then all textfield and then clear them
-//        List<TextField> clearWorkTimes = getAllDaysTextFieldOf("work times");
-//        for(TextField dayTextField : clearWorkTimes) {
-//            System.out.printf("Start and end time for %s\n",dayTextField.getId());
-//            dayTextField.setText("");
-//        }
-//        
-//        List<TextField> clearBreakTimes = getAllDaysTextFieldOf("break times");
-//        for(TextField dayTextField : clearBreakTimes) {
-//            System.out.printf("Clearing break time for %s\n",dayTextField.getId());
-//            dayTextField.setText("");
-//        }
-//    }
-            
-//    @FXML
-//    public void addListenersToButtons() {
-//        
-//        clearAllDayBtn.setOnAction((ActionEvent event) -> {
-//            clearObj.clearAllDays();
-//        });
-//    }
 
-    
-//    Function: This function will get all the textfield elements as required in by a list.
-//              If start and end time is wanted, it will provide an array of start and end time for all days.
-//              If break time is wanted, it will provide break time for all days.
-//              If earned is wanted, it will provide earned textfield for all days.
-//    Input: "work times", "break times" or "earned"
 
     public List<TextField> getAllDaysTextFieldOf(String fieldOf) {
         List<TextField> retList = new ArrayList<>();
