@@ -191,7 +191,7 @@ public class FXMLDocumentController implements Initializable {
         FileChooser fileChooser = new FileChooser();
 
         //Set extension filter
-        FileChooser.ExtensionFilter extFilterProperties = new FileChooser.ExtensionFilter("Properties, TXT files (*.properties)", "*.properties", "*.txt");
+        FileChooser.ExtensionFilter extFilterProperties = new FileChooser.ExtensionFilter("Properties files (*.properties)", "*.properties", "*.txt");
         FileChooser.ExtensionFilter extFilterTxt = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(extFilterProperties);
         fileChooser.getExtensionFilters().add(extFilterTxt);
