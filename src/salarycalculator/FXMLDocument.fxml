@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="408.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salarycalculator.FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="anchor" onKeyPressed="#tabDayChange" prefHeight="408.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salarycalculator.FXMLDocumentController">
     <children>
       <VBox layoutX="14.0" layoutY="22.0" prefHeight="90.0" prefWidth="254.0">
          <children>
