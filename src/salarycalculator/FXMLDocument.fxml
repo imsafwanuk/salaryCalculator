@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -14,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="408.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salarycalculator.FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="408.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salarycalculator.FXMLDocumentController">
     <children>
-      <VBox layoutX="14.0" layoutY="22.0">
+      <VBox layoutX="14.0" layoutY="22.0" prefHeight="90.0" prefWidth="254.0">
          <children>
-            <HBox prefHeight="30.0" prefWidth="69.0">
+            <HBox prefHeight="30.0" prefWidth="123.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="23.0" text="\$">
                      <HBox.margin>
@@ -26,6 +27,7 @@
                      </HBox.margin>
                   </Label>
                   <TextField fx:id="hourly_wage_field_A" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="61.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="112.0" text="A : Hourly Rate" />
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="69.0">
@@ -36,6 +38,7 @@
                      </HBox.margin>
                   </Label>
                   <TextField fx:id="hourly_wage_field_B" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="61.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="152.0" text="B : Weekend(Sat) Rate" />
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="69.0">
@@ -46,6 +49,7 @@
                      </HBox.margin>
                   </Label>
                   <TextField fx:id="hourly_wage_field_C" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="61.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="158.0" text="C : Weekend(Sun) Rate" />
                </children>
             </HBox>
          </children>
@@ -397,7 +401,7 @@
                         </VBox>
                         <VBox>
                            <children>
-                              <RadioButton fx:id="wage_selector_B_thu" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" toggleGroup="$wage_selector_thu" />
+                              <RadioButton fx:id="wage_selector_B_thu" mnemonicParsing="false" onAction="#wageSelectorListener" prefHeight="17.0" prefWidth="0.0" style="-fx-text-fill: #B2DFDB;" toggleGroup="$wage_selector_thu" />
                               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="21.0" text="B " />
                            </children>
                            <HBox.margin>
@@ -508,7 +512,7 @@
             </VBox>
             <VBox fx:id="vbox_sat" layoutX="631.0" layoutY="23.0">
                <children>
-                  <Label fx:id="sat" alignment="CENTER" prefHeight="17.0" prefWidth="90.0" text="Sat" textFill="RED">
+                  <Label fx:id="sat" alignment="CENTER" prefHeight="17.0" prefWidth="90.0" styleClass="weekend_label" text="Sat" textFill="RED">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
@@ -594,7 +598,7 @@
             </VBox>
             <VBox fx:id="vbox_sun" layoutX="741.0" layoutY="23.0">
                <children>
-                  <Label fx:id="sun" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="90.0" text="Sun" textFill="RED">
+                  <Label fx:id="sun" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="90.0" styleClass="weekend_label" text="Sun" textFill="RED">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
@@ -680,25 +684,37 @@
             </VBox>
          </children>
       </Group>
-      <Button id="cal" fx:id="calculate_btn" layoutX="361.0" layoutY="365.0" mnemonicParsing="false" onAction="#calculateBtnListener" text="Calculate" />
-      <HBox layoutX="57.0" layoutY="371.0" prefHeight="17.0" prefWidth="110.0">
+      <Button id="calculate_btn" fx:id="calculate_btn" layoutX="245.0" layoutY="365.0" mnemonicParsing="false" onAction="#calculateBtnListener" styleClass="mybtn" text="Calculate" />
+      <HBox layoutX="384.0" layoutY="371.0" prefHeight="20.0" prefWidth="159.0" styleClass="total_label_hbox">
          <children>
-            <Label prefHeight="17.0" prefWidth="70.0" text="Total Hours:" />
-            <Label fx:id="total_hour" prefHeight="17.0" prefWidth="40.0" />
+            <Label id="total_hr_label" prefHeight="20.0" prefWidth="102.0" styleClass="total_label" text="Total Hours:">
+               <padding>
+                  <Insets left="7.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></Label>
+            <Label id="total_hr_value" fx:id="total_hour" alignment="CENTER" prefHeight="20.0" prefWidth="62.0" styleClass="total_label" text="12.34">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></Label>
          </children>
       </HBox>
-      <HBox layoutX="177.0" layoutY="371.0" prefHeight="17.0" prefWidth="153.0">
+      <HBox layoutX="573.0" layoutY="371.0" prefHeight="20.0" prefWidth="201.0" styleClass="total_label_hbox">
          <children>
-            <Label prefHeight="17.0" prefWidth="92.0" text="Total Earned:  $" />
-            <Label fx:id="total_earned" prefHeight="17.0" prefWidth="63.0" />
+            <Label id="total_earned_label" prefHeight="20.0" prefWidth="106.0" styleClass="total_label" text="Total Earned:  $">
+               <padding>
+                  <Insets left="6.0" />
+               </padding></Label>
+            <Label id="total_earned_value" fx:id="total_earned" alignment="CENTER" prefHeight="20.0" prefWidth="85.0" styleClass="total_label" text="122">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding></Label>
          </children>
       </HBox>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="80.0" layoutY="22.0" prefHeight="30.0" prefWidth="100.0" text="A : Hourly Wage" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="83.0" layoutY="52.0" prefHeight="30.0" prefWidth="123.0" text="B : Weekend(Sat) Rate" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="85.0" layoutY="77.0" prefHeight="30.0" prefWidth="123.0" text="C : Weekend(Sun) Rate" />
-      <Button fx:id="save_btn" layoutX="556.0" layoutY="364.0" mnemonicParsing="false" onAction="#saveBtnListener" text="Save" />
-      <Button fx:id="load_btn" layoutX="620.0" layoutY="365.0" mnemonicParsing="false" onAction="#loadBtnListener" text="Load" />
-      <MenuButton fx:id="clear_menu_btn" layoutX="458.0" layoutY="364.0" mnemonicParsing="false" onAction="#clearActionListener" text="clear">
+      <Button id="save_btn" fx:id="save_btn" layoutX="32.0" layoutY="364.0" mnemonicParsing="false" onAction="#saveBtnListener" styleClass="mybtn" text="Save" />
+      <Button id="load_btn" fx:id="load_btn" layoutX="121.0" layoutY="364.0" mnemonicParsing="false" onAction="#loadBtnListener" styleClass="mybtn" text="Load" />
+      <MenuButton id="clear_btn" fx:id="clear_menu_btn" layoutX="839.0" layoutY="364.0" mnemonicParsing="false" onAction="#clearActionListener" text="Clear" textFill="#f2f2f2">
          <items>
             <MenuItem fx:id="menu_item_all_day" mnemonicParsing="false" onAction="#clearActionListener" text="all days" />
             <MenuItem fx:id="menu_item_wages" mnemonicParsing="false" onAction="#clearActionListener" text="wages" />
@@ -712,8 +728,13 @@
             <MenuItem fx:id="menu_item_everything" mnemonicParsing="false" onAction="#clearActionListener" text="everything" />
          </items>
       </MenuButton>
+      <Button id="theme_btn" fx:id="theme_btn" layoutX="799.0" layoutY="22.0" mnemonicParsing="false" onAction="#themeChangeListener" prefHeight="17.0" prefWidth="110.0" styleClass="mybtn" text="Dark Theme" />
     </children>
    <padding>
       <Insets left="20.0" right="20.0" />
    </padding>
+   <stylesheets>
+      <URL value="@darktheme.css" />
+      <URL value="@darktheme2.css" />
+   </stylesheets>
 </AnchorPane>
