@@ -32,6 +32,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.scene.input.KeyEvent;
 import org.controlsfx.control.CheckComboBox;
 
 /**
@@ -182,6 +183,65 @@ public class FXMLDocumentController implements Initializable {
         theModel.wageSelector(day, radio);
     }
       
+    
+      //    Function: When CRTL+keyorad number = DIGIT1,DIGIT2 are pressed, focus will go to 
+//              corresponding days. mon = 1, tue = 2, wed = 3... 
+//    Input: Appropriate KeyPress
+    
+    public void tabDayChange(KeyEvent event){
+        System.out.println(event.getCode().toString());
+        String keypress = event.getCode().toString();
+   
+        switch(keypress){
+            
+            // for mon
+            case "NUMPAD1":
+            case "DIGIT1":
+                mon_start_hr.requestFocus();
+                break;
+                
+                // for tue 
+            case "NUMPAD2":
+            case "DIGIT2":
+                tue_start_hr.requestFocus();
+                break;
+                
+                // for wed
+            case "NUMPAD3":
+            case "DIGIT3":
+                wed_start_hr.requestFocus();
+                break;
+                
+                // for thur
+            case "NUMPAD4":
+            case "DIGIT4":
+                thu_start_hr.requestFocus();
+                break;
+                
+                // for fri
+            case "NUMPAD5":
+            case "DIGIT5":
+                fri_start_hr.requestFocus();
+                break;
+                
+                // for sat
+            case "NUMPAD6":
+            case "DIGIT6":
+                sat_start_hr.requestFocus();
+                break;
+                
+                // for sun
+            case "NUMPAD7":
+            case "DIGIT7":
+                sun_start_hr.requestFocus();
+                break;
+                
+            default:
+                System.out.println("Invalid key press "+keypress);
+        }
+    }
+    
+    
 
 /**
  * Function: Causes the Model to save user info in a .txt or .properties file in users desired location.
