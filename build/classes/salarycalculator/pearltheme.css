@@ -1,0 +1,119 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23/11/2017, 9:50:28 AM
+    Author     : safwan
+*/
+#AnchorPane{
+ -fx-background-color: #E0F2F1;   
+ /*-fx-background-color: #FFFFFF;*/   
+}
+
+Label { 
+    -fx-text-fill: #000000;
+}
+
+
+/*MenuButton, MenuItem{
+    -fx-background-radius: 5em;
+-fx-font-size: 14px;
+-fx-text-fill: #00FFFF;
+-fx-color: #00FFFF;
+-fx-background-color: #3866A3;
+}*/
+
+Button,#clear_btn{
+  
+  /*color: #E6EEF0 !important;*/
+  
+/*  text-shadow: 1px 1px 0px #7CACDE;
+  box-shadow: 2px 1px 1px #BEE2F9;*/
+  /*-fx-padding: 10px;*/
+  /*-moz-border-radius: 10px;*/
+  /*-webkit-border-radius: 10px;*/
+  /*-fx-border-radius: 10px;*/
+  /*border: 2px solid*/ 
+-fx-background-radius: 5em;
+-fx-font-size: 14px;
+-fx-text-fill: #E1F5FE;
+-fx-color: #E1F5FE;
+-fx-background-color: #3866A3;
+  
+}
+
+#clear_btn{
+    -fx-background-color: #FF0000;
+    -fx-text-fill: #FFFFFF;
+}
+
+#save_btn{
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: #000000;
+}
+
+#load_btn{
+    -fx-background-color: #CDDC39;
+    -fx-text-fill: #000000;
+}
+
+#calculate_btn{
+    -fx-background-color: #0277BD;
+    -fx-text-fill: #000000;
+}
+
+
+
+.weekend_label{
+    -fx-text-fill: #FF0000;
+    -fx-color: #FF0000;
+}
+
+
+.total_label{
+    
+-fx-background-radius: 1em;
+-fx-font-size: 14px;
+/*-fx-text-fill: #E1F5FE;*/
+/*-fx-color: #E1F5FE;*/
+-fx-background-color: #009688;
+}
+
+#theme_btn{
+-fx-background-color: #00E5FF;
+-fx-text-fill: #000000;
+}
+
+
+TextField{
+    	-fx-background-color: #607D8B;
+        -fx-text-fill: #FFFFFF;
+}
+
+
+Button:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+
+.total_label_hbox:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+
+
+#total_hr_label, #total_earned_label{
+  -fx-border-radius: 1em 0.75em 0.75em 1em;
+  -fx-background-radius: 1em 0.75em 0.75em 1em;
+
+}
+
+#total_hr_value, #total_earned_value{
+  -fx-border-radius: 0.75em 1em 1em 0.75em;
+  -fx-background-radius: 0.75em 1em 1em 0.75em;
+
+}

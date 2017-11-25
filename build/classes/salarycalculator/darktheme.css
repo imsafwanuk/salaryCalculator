@@ -1,0 +1,89 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21/11/2017, 1:32:07 PM
+    Author     : safwan
+*/
+
+#AnchorPane{
+ -fx-background-color: #37474F;   
+}
+
+Label { 
+    -fx-text-fill: #ECEFF1;
+}
+
+
+/*MenuButton, MenuItem{
+    -fx-background-radius: 5em;
+-fx-font-size: 14px;
+-fx-text-fill: #00FFFF;
+-fx-color: #00FFFF;
+-fx-background-color: #3866A3;
+}*/
+
+Button{
+-fx-background-radius: 5em;
+-fx-font-size: 14px;
+-fx-text-fill: #E1F5FE;
+-fx-color: #E1F5FE;
+-fx-background-color: #3866A3;
+}
+
+#clear_btn{
+    -fx-background-radius: 5em;
+    -fx-font-size: 14px;
+    -fx-background-color: #FF0000;    
+}
+
+.weekend_label{
+    -fx-text-fill: #00FFFF;
+}
+
+
+.total_label{
+    
+/*-fx-background-radius: 1em;*/
+-fx-font-size: 14px;
+/*-fx-text-fill: #E1F5FE;*/
+/*-fx-color: #E1F5FE;*/
+-fx-background-color: #009688;
+}
+
+
+#total_hr_label, #total_earned_label{
+  -fx-border-radius: 1em 0.75em 0.75em 1em;
+  -fx-background-radius: 1em 0.75em 0.75em 1em;
+
+}
+
+#total_hr_value, #total_earned_value{
+  -fx-border-radius: 0.75em 1em 1em 0.75em;
+  -fx-background-radius: 0.75em 1em 1em 0.75em;
+
+}
+
+
+#theme_btn{
+-fx-background-color: #B0BEC5;
+-fx-text-fill: #000000;
+}
+
+TextField{
+    	-fx-background-color: #B2DFDB;
+}
+
+Button:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
+
+.total_label_hbox:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+}
