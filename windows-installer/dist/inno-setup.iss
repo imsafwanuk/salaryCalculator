@@ -5,7 +5,7 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{F113951B-CD6F-4268-A8C0-12C5157DAB2F}
+AppId={{44518DF3-6ADB-4DD8-8CCB-324993F35910}
 AppName=SalaryCalculator
 AppVersion=1.0.0
 ;AppVerName=SalaryCalculator 1.0.0
