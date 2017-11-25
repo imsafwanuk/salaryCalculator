@@ -7,3 +7,5 @@ https://drive.google.com/drive/folders/1xtjQ5kwm8lfL8l8dZoE15bZlno5hT_ms?usp=sha
 #warning-error-dialogs
 #clean
 #styling
+#windows-packaging
+#macOS-packaging
